@@ -1,10 +1,16 @@
+/**
+ * Copyright (c) HashiCorp, Inc.
+ * SPDX-License-Identifier: MPL-2.0
+ */
+
 const path = require('path')
 
 /**
  * Reads options from `package.json`
  */
 const getOptions = (pathPrefix = process.cwd()) => {
-  return require(path.join(pathPrefix, 'package.json')).nextBundleAnalysis
+  const pkg = require(path.join(pathPrefix, 'package.json'))
+  return { ...pkg.nextBundleAnalysis, name: pkg.name }
 }
 
 /**

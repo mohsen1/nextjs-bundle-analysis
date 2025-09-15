@@ -1,4 +1,9 @@
 #!/usr/bin/env node
+/**
+ * Copyright (c) HashiCorp, Inc.
+ * SPDX-License-Identifier: MPL-2.0
+ */
+
 
 const path = require('path')
 const fs = require('fs')
@@ -31,7 +36,7 @@ inquirer
     {
       type: 'number',
       name: 'minimumChangeThreshold',
-      message: `If a page's size change is below this threshold (in bytes), it will be considered unchanged'`,
+      message: `If a page's size change is below this threshold (in bytes), it will be considered unchanged`,
       default: 0,
     },
   ])
