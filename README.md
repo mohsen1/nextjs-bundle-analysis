@@ -43,6 +43,10 @@ For example, if you build to `dist`, you should:
 
 (Optional, defaults to `0`) The threshold under which pages will be considered unchanged. For example, if `minimumChangeThreshold` was set to `500` and a page's size increased by `300 B`, it will be considered unchanged.
 
+### `alwaysShowGzipDiff (boolean)`
+
+(Optional, defaults to `false`) If set, the display table will show the gzip size difference for routes even when a budget is set.
+
 ### `skipCommentIfEmpty (boolean)`
 
 (Optional, defaults to `false`) When set to `true`, if no pages have changed size the generated comment will be an empty string.
