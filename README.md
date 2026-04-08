@@ -18,6 +18,34 @@ Config values are written to `package.json` under the key `nextBundleAnalysis`, 
 
 The reusable workflow also accepts `with:` inputs for `output-mode`, `minimum-change-threshold`, `minimum-total-change-threshold`, `skip-comment-if-empty`, `build-output-directory`, and the existing install/build settings. Workflow inputs take precedence over `package.json`.
 
+### Example: Check-First Publishing
+
+If you want bundle analysis to live in the GitHub Checks tab by default and only post a PR comment when bundle increases exceed practical thresholds, you can configure it like this:
+
+```json
+{
+  "nextBundleAnalysis": {
+    "outputMode": "check",
+    "minimumChangeThreshold": 1024,
+    "minimumTotalChangeThreshold": 1024,
+    "skipCommentIfEmpty": true
+  }
+}
+```
+
+You can also override those values in the generated workflow:
+
+```yml
+jobs:
+  analyze:
+    uses: hashicorp/nextjs-bundle-analysis/.github/workflows/analyze.yml@<version>
+    with:
+      output-mode: check
+      minimum-change-threshold: 1024
+      minimum-total-change-threshold: 1024
+      skip-comment-if-empty: true
+```
+
 ### `showDetails (boolean)`
 
 (Optional, defaults to `true`) This option renders a collapsed "details" section under each section of the bundle analysis comment explaining some of the finer details of the numbers provided. If you feel like this is not necessary and you and/or those working on your project understand the details, you can set this option to `false` and that section will not render.
