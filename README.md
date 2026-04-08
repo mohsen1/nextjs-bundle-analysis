@@ -69,6 +69,7 @@ For example, if you build to `dist`, you should:
 - If there are no bundle changes, the check completes successfully with a `No bundle changes` message.
 - If the base bundle artifact is missing, the check completes with a neutral conclusion explaining why no comparison was generated.
 - In `check` mode, managed PR comments are deleted and recreated so at most one bundle-analysis comment exists on the PR, and it stays near the latest commit activity.
+- In practice, use non-trivial thresholds for `minimumChangeThreshold` and `minimumTotalChangeThreshold` in `check` mode. Very small thresholds such as `1` byte can be noisy because some builds vary by a few bytes even when app code has not meaningfully changed.
 
 ## Caveats
 
