@@ -55,6 +55,12 @@ on:
 jobs:
   analyze:
     runs-on: ubuntu-latest
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: 'true'
+      NEXTJS_BUNDLE_ANALYSIS_OUTPUT_MODE: ${{ inputs.output-mode }}
+      NEXTJS_BUNDLE_ANALYSIS_MINIMUM_CHANGE_THRESHOLD: ${{ inputs.minimum-change-threshold }}
+      NEXTJS_BUNDLE_ANALYSIS_MINIMUM_TOTAL_CHANGE_THRESHOLD: ${{ inputs.minimum-total-change-threshold }}
+      NEXTJS_BUNDLE_ANALYSIS_SKIP_COMMENT_IF_EMPTY: ${{ inputs.skip-comment-if-empty }}
     permissions:
       contents: read # for checkout repository
       actions: read # for fetching base branch bundle stats
@@ -64,11 +70,6 @@ jobs:
       run:
         # change this if your nextjs app does not live at the root of the repo
         working-directory: ${{ inputs.working-directory }}
-    env:
-      NEXTJS_BUNDLE_ANALYSIS_OUTPUT_MODE: ${{ inputs.output-mode }}
-      NEXTJS_BUNDLE_ANALYSIS_MINIMUM_CHANGE_THRESHOLD: ${{ inputs.minimum-change-threshold }}
-      NEXTJS_BUNDLE_ANALYSIS_MINIMUM_TOTAL_CHANGE_THRESHOLD: ${{ inputs.minimum-total-change-threshold }}
-      NEXTJS_BUNDLE_ANALYSIS_SKIP_COMMENT_IF_EMPTY: ${{ inputs.skip-comment-if-empty }}
     steps:
       - uses: actions/checkout@v5
 
